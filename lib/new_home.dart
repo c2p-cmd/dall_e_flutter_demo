@@ -28,7 +28,7 @@ class DallEHome extends HookWidget {
     final snapshot = useFuture(future, initialData: null);
 
     useEffect(() {
-      log(snapshot.error.toString());
+      log("Error: ${snapshot.error}");
       if (snapshot.data == null) {
         return;
       }
@@ -43,6 +43,10 @@ class DallEHome extends HookWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text(
+            imgPrompt,
+            style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+          ),
           Center(
             child: (snapshot.data == null)
                 ? const SoundWidget()
