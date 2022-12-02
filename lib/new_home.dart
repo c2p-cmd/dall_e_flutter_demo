@@ -49,7 +49,14 @@ class DallEHome extends HookWidget {
           ),
           Center(
             child: (snapshot.data == null)
-                ? const SoundWidget()
+                ? (snapshot.hasError)
+                    ? TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text(
+                          "An error has occurred: ${snapshot.error.toString()}",
+                        ),
+                      )
+                    : const SoundWidget()
                 : ClipRect(
                     child: Image.network(snapshot.data.toString()),
                   ),
